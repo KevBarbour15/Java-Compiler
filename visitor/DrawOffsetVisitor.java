@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-@SuppressWarnings("ALL")
+
 
 
 public class DrawOffsetVisitor extends ASTVisitor {
