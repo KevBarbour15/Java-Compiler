@@ -239,15 +239,16 @@ public class Lexer {
     }
     return makeToken(op, startPosition, endPosition, line);
   }
-
+  
+  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
   public static String evenString(Symbol token, int left, int right, int line, String sym) {
     return String.format("%-11s left: %-8s right: %-8s line: %-8s " + sym, token, left, right, line);
   }
-
+  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
   private boolean isNumberLit(String number) {
     return number.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
   }
-
+  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
   private boolean isDateLit(String number) {
     return number.matches("^\\d{2}~\\d{2}~\\d{4}$") ||
     number.matches("^\\d{1}~\\d{2}~\\d{4}$") ||
