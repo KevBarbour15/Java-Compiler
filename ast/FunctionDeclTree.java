@@ -4,12 +4,11 @@ import visitor.*;
 
 public class FunctionDeclTree extends AST {
 
-    public FunctionDeclTree() {
-    }
+  public FunctionDeclTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitFunctionDeclTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitFunctionDeclTree(this);
+  }
 
 }
-

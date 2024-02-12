@@ -7,10 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author Lowell Milliken
- */
 public class DrawVisitor extends ASTVisitor {
 
   private final int nodew = 100;
@@ -245,14 +241,14 @@ public class DrawVisitor extends ASTVisitor {
     return null;
   }
 
-  public Object visitNumberLitTree(AST t) { 
-    draw("NumberLit", t); 
-    return null; 
+  public Object visitNumberLitTree(AST t) {
+    draw("NumberLit", t);
+    return null;
   }
 
-  public Object visitNumberTypeTree(AST t) { 
-    draw("NumberType", t); 
-    return null; 
+  public Object visitNumberTypeTree(AST t) {
+    draw("NumberType", t);
+    return null;
   }
 
   public Object visitDoTree(AST t) {

@@ -4,12 +4,11 @@ import visitor.*;
 
 public class BlockTree extends AST {
 
-    public BlockTree() {
-    }
+  public BlockTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitBlockTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitBlockTree(this);
+  }
 
 }
-

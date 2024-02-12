@@ -4,12 +4,11 @@ import visitor.*;
 
 public class IfTree extends AST {
 
-    public IfTree() {
-    }
+  public IfTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitIfTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitIfTree(this);
+  }
 
 }
-

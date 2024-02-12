@@ -4,12 +4,11 @@ import visitor.*;
 
 public class ReturnTree extends AST {
 
-    public ReturnTree() {
-    }
+  public ReturnTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitReturnTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitReturnTree(this);
+  }
 
 }
-

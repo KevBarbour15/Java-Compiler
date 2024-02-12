@@ -1,8 +1,7 @@
 package visitor;
+
 import java.util.HashMap;
 import ast.AST;
-
-
 
 public class OffsetVisitor extends ASTVisitor {
 
@@ -44,7 +43,7 @@ public class OffsetVisitor extends ASTVisitor {
       visitKids(t);
       depth--;
 
-      offsets.put(t,nextAvailable[depth]);
+      offsets.put(t, nextAvailable[depth]);
       nextAvailable[depth] += 2;
 
       int kidTotal = t.kidCount();

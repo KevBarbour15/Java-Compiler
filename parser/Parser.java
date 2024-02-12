@@ -73,7 +73,7 @@ public class Parser {
       lex = new Lexer(sourceProgram);
       scan();
     } catch (Exception e) {
-      System.out.println("********exception*******" + e.toString());
+      System.out.println("********exception*******" + e.toString() + "\n");
       throw e;
     }
     ;
@@ -125,10 +125,10 @@ public class Parser {
   public AST rBlock() throws SyntaxError {
     expect(Tokens.LeftBrace);
     AST t = new BlockTree();
-    while (startingDecl()) { 
+    while (startingDecl()) {
       t.addKid(rDecl());
     }
-    while (startingStatement()) { 
+    while (startingStatement()) {
       t.addKid(rStatement());
     }
     expect(Tokens.RightBrace);
@@ -148,15 +148,15 @@ public class Parser {
   }
 
   boolean startingDecl() {
-    return isNextTok(Tokens.Int) || isNextTok(Tokens.BOOLean) 
-    || isNextTok(Tokens.DateType) || isNextTok(Tokens.Number);
+    return isNextTok(Tokens.Int) || isNextTok(Tokens.BOOLean)
+        || isNextTok(Tokens.DateType) || isNextTok(Tokens.Number);
   }
 
   boolean startingStatement() {
-    return isNextTok(Tokens.If) || isNextTok(Tokens.While) || 
-    isNextTok(Tokens.Return) || isNextTok(Tokens.LeftBrace)|| 
-    isNextTok(Tokens.Identifier) || isNextTok(Tokens.For) || 
-    isNextTok(Tokens.DoLoop);
+    return isNextTok(Tokens.If) || isNextTok(Tokens.While) ||
+        isNextTok(Tokens.Return) || isNextTok(Tokens.LeftBrace) ||
+        isNextTok(Tokens.Identifier) || isNextTok(Tokens.For) ||
+        isNextTok(Tokens.DoLoop);
   }
 
   /**
@@ -506,7 +506,7 @@ class SyntaxError extends Exception {
   }
 
   void print() {
-    System.out.println("Expected: " + kindExpected);
+    System.out.println("Expected: " + kindExpected + "\n");
     return;
   }
 }

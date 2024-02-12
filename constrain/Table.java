@@ -2,30 +2,42 @@ package constrain;
 
 import lexer.Symbol;
 
-/** <pre>
+/**
+ * <pre>
  *  Binder objects group 3 fields
  *  1. a value
  *  2. the next link in the chain of symbols in the current scope
  *  3. the next link of a previous Binder for the same identifier
  *     in a previous scope
- *  </pre>
-*/
+ * </pre>
+ */
 class Binder {
   private Object value;
-  private Symbol prevtop;   // prior symbol in same scope
-  private Binder tail;      // prior binder for same symbol
-                            // restore this when closing scope
+  private Symbol prevtop; // prior symbol in same scope
+  private Binder tail; // prior binder for same symbol
+                       // restore this when closing scope
+
   Binder(Object v, Symbol p, Binder t) {
-	value=v; prevtop=p; tail=t;
+    value = v;
+    prevtop = p;
+    tail = t;
   }
 
-  Object getValue() { return value; }
-  Symbol getPrevtop() { return prevtop; }
-  Binder getTail() { return tail; }
+  Object getValue() {
+    return value;
+  }
+
+  Symbol getPrevtop() {
+    return prevtop;
+  }
+
+  Binder getTail() {
+    return tail;
+  }
 }
 
-
-/** <pre>
+/**
+ * <pre>
  * The Table class is similar to java.util.Dictionary, except that
  * each key must be a Symbol and there is a scope mechanism.
  *
@@ -57,82 +69,86 @@ class Binder {
  * 
  * Note: What happens if a symbol is defined twice in the same scope??
  * </pre>
-*/
+ */
 public class Table {
 
-  private java.util.HashMap<Symbol,Binder> symbols = new java.util.HashMap<Symbol,Binder>();
-  private Symbol top;    // reference to last symbol added to
-                         // current scope; this essentially is the
-                         // start of a linked list of symbols in scope
-  private Binder marks;  // scope mark; essentially we have a stack of
-                         // marks - push for new scope; pop when closing
-                         // scope
+  private java.util.HashMap<Symbol, Binder> symbols = new java.util.HashMap<Symbol, Binder>();
+  private Symbol top; // reference to last symbol added to
+                      // current scope; this essentially is the
+                      // start of a linked list of symbols in scope
+  private Binder marks; // scope mark; essentially we have a stack of
+                        // marks - push for new scope; pop when closing
+                        // scope
 
-/*
-    public static void main(String args[]) {
-        Symbol s = Symbol.symbol("a", 1),
-            s1 = Symbol.symbol("b", 2),
-            s2 = Symbol.symbol("c", 3);
+  /*
+   * public static void main(String args[]) {
+   * Symbol s = Symbol.symbol("a", 1),
+   * s1 = Symbol.symbol("b", 2),
+   * s2 = Symbol.symbol("c", 3);
+   * 
+   * Table t = new Table();
+   * t.beginScope();
+   * t.put(s,"top-level a");
+   * t.put(s1,"top-level b");
+   * t.beginScope();
+   * t.put(s2,"second-level c");
+   * t.put(s,"second-level a");
+   * t.endScope();
+   * t.put(s2,"top-level c");
+   * t.endScope();
+   * }
+   * 
+   */
+  public Table() {
+  }
 
-        Table t = new Table();
-        t.beginScope();
-        t.put(s,"top-level a");
-        t.put(s1,"top-level b");
-        t.beginScope();
-        t.put(s2,"second-level c");
-        t.put(s,"second-level a");
-        t.endScope();
-        t.put(s2,"top-level c");
-        t.endScope();
-}
-
-*/
-  public Table(){}
-
-
- /**
-  * Gets the object associated with the specified symbol in the Table.
-  */
+  /**
+   * Gets the object associated with the specified symbol in the Table.
+   */
   public Object get(Symbol key) {
-	Binder e = symbols.get(key);
-	return e.getValue();
+    Binder e = symbols.get(key);
+    return e.getValue();
   }
 
- /**
-  * Puts the specified value into the Table, bound to the specified Symbol.<br>
-  * Maintain the list of symbols in the current scope (top);<br>
-  * Add to list of symbols in prior scope with the same string identifier
-  */
+  /**
+   * Puts the specified value into the Table, bound to the specified Symbol.<br>
+   * Maintain the list of symbols in the current scope (top);<br>
+   * Add to list of symbols in prior scope with the same string identifier
+   */
   public void put(Symbol key, Object value) {
-	symbols.put(key, new Binder(value, top, symbols.get(key)));
-	top = key;
+    symbols.put(key, new Binder(value, top, symbols.get(key)));
+    top = key;
   }
 
- /**
-  * Remembers the current state of the Table; push new mark on mark stack
-  */
+  /**
+   * Remembers the current state of the Table; push new mark on mark stack
+   */
   public void beginScope() {
-    marks = new Binder(null,top,marks);
-    top=null;
+    marks = new Binder(null, top, marks);
+    top = null;
   }
 
- /**
-  * Restores the table to what it was at the most recent beginScope
-  *	that has not already been ended.
-  */
+  /**
+   * Restores the table to what it was at the most recent beginScope
+   * that has not already been ended.
+   */
   public void endScope() {
-	while (top!=null) {
-	   Binder e = symbols.get(top);
-	   if (e.getTail()!=null) symbols.put(top,e.getTail());
-	   else symbols.remove(top);
-	   top = e.getPrevtop();
-	}
-	top=marks.getPrevtop();
-	marks=marks.getTail();
+    while (top != null) {
+      Binder e = symbols.get(top);
+      if (e.getTail() != null)
+        symbols.put(top, e.getTail());
+      else
+        symbols.remove(top);
+      top = e.getPrevtop();
+    }
+    top = marks.getPrevtop();
+    marks = marks.getTail();
   }
 
   /**
    * @return a set of the Table's symbols.
    */
-  public java.util.Set<Symbol> keys() {return symbols.keySet();}
+  public java.util.Set<Symbol> keys() {
+    return symbols.keySet();
+  }
 }

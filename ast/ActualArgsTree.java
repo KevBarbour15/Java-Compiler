@@ -4,12 +4,11 @@ import visitor.*;
 
 public class ActualArgsTree extends AST {
 
-    public ActualArgsTree() {
-    }
+  public ActualArgsTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitActualArgsTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitActualArgsTree(this);
+  }
 
 }
-

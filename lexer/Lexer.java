@@ -217,12 +217,10 @@ public class Lexer {
       endPosition++;
       ch = source.read();
       op += ch;
-      // check if valid 2 char operator; if it's not in the symbol
-      // table then don't insert it since we really have a one char
-      // token
+
       sym = Symbol.symbol(op, Tokens.BogusToken);
       if (sym == null) {
-        // it must be a one char token
+
         return makeToken(charOld, startPosition, endPosition, line);
       }
 
@@ -239,28 +237,25 @@ public class Lexer {
     }
     return makeToken(op, startPosition, endPosition, line);
   }
-  
-  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
+
   public static String evenString(Symbol token, int left, int right, int line, String sym) {
     return String.format("%-11s left: %-8s right: %-8s line: %-8s " + sym, token, left, right, line);
   }
-  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
+
   private boolean isNumberLit(String number) {
     return number.matches("^\\d*\\.\\d+|\\d+\\.\\d*$");
   }
-  /// this code was added after Assignment 2 was turned in to help correct any issues I make have had with my Lexer
+
   private boolean isDateLit(String number) {
     return number.matches("^\\d{2}~\\d{2}~\\d{4}$") ||
-    number.matches("^\\d{1}~\\d{2}~\\d{4}$") ||
-    number.matches("^\\d{1}~\\d{1}~\\d{4}$") ||
-    number.matches("^\\d{2}~\\d{1}~\\d{4}$") ||
-    number.matches("^\\d{1}~\\d{2}~\\d{2}$") ||
-    number.matches("^\\d{1}~\\d{1}~\\d{2}$") ||
-    number.matches("^\\d{2}~\\d{1}~\\d{2}$") ||
-    number.matches("^\\d{2}~\\d{2}~\\d{2}$")
-    ;
+        number.matches("^\\d{1}~\\d{2}~\\d{4}$") ||
+        number.matches("^\\d{1}~\\d{1}~\\d{4}$") ||
+        number.matches("^\\d{2}~\\d{1}~\\d{4}$") ||
+        number.matches("^\\d{1}~\\d{2}~\\d{2}$") ||
+        number.matches("^\\d{1}~\\d{1}~\\d{2}$") ||
+        number.matches("^\\d{2}~\\d{1}~\\d{2}$") ||
+        number.matches("^\\d{2}~\\d{2}~\\d{2}$");
   }
-  
 
   public static void main(String args[]) {
     Token token;

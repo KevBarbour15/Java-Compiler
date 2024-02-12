@@ -4,12 +4,11 @@ import visitor.*;
 
 public class CallTree extends AST {
 
-    public CallTree() {
-    }
+  public CallTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitCallTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitCallTree(this);
+  }
 
 }
-

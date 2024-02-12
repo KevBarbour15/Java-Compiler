@@ -4,12 +4,11 @@ import visitor.*;
 
 public class IntTypeTree extends AST {
 
-    public IntTypeTree() {
-    }
+  public IntTypeTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitIntTypeTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitIntTypeTree(this);
+  }
 
 }
-

@@ -4,8 +4,7 @@ import visitor.*;
 
 public class NumberTypeTree extends AST {
 
-  public NumberTypeTree(){
-
+  public NumberTypeTree() {
   }
 
   public Object accept(ASTVisitor v) {

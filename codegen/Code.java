@@ -1,24 +1,24 @@
 package codegen;
 
-/** The Code class records bytecode information
-*/
+/**
+ * The Code class records bytecode information
+ */
 public class Code {
-    private Codes.ByteCodes bytecode;
+  private Codes.ByteCodes bytecode;
 
-    public Code(Codes.ByteCodes code) {
-        bytecode = code;
-    }
+  public Code(Codes.ByteCodes code) {
+    bytecode = code;
+  }
 
-    public Codes.ByteCodes getBytecode() {
-        return bytecode;
-    }
+  public Codes.ByteCodes getBytecode() {
+    return bytecode;
+  }
 
-    public String toString() {
-        return bytecode.toString();
-    }
+  public String toString() {
+    return bytecode.toString();
+  }
 
-    public void print() {
-        System.out.println(toString());
-    }
+  public void print() {
+    System.out.println(toString());
+  }
 }
-

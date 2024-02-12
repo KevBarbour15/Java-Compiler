@@ -4,12 +4,11 @@ import visitor.*;
 
 public class AssignTree extends AST {
 
-    public AssignTree() {
-    }
+  public AssignTree() {
+  }
 
-    public Object accept(ASTVisitor v) {
-        return v.visitAssignTree(this);
-    }
+  public Object accept(ASTVisitor v) {
+    return v.visitAssignTree(this);
+  }
 
 }
-

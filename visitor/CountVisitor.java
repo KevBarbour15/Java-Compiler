@@ -2,10 +2,6 @@ package visitor;
 
 import ast.AST;
 
-/**
- *
- * @author Lowell Milliken
- */
 public class CountVisitor extends ASTVisitor {
 
   private int[] nCount = new int[100];
